@@ -30,8 +30,7 @@ format:
 	cd src; gofmt -w *.go
 	cd spec; gofmt -w *.go
 
-test:
-	cd src; make testpackage
+test: package
 	cd spec; $(SPECIFY) *.go
 
 package:

@@ -1,7 +1,7 @@
 package main
 
 import . "specify"
-import t "../src/testfib"
+import t "../src/fib"
 
 func init() {
 	Describe("Fib", func() {

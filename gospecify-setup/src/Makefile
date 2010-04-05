@@ -43,14 +43,3 @@ $(PACKAGE).a: $(PACKAGE).$O
 $(PACKAGE).$O: $(SRC)
 	$(GC) -o $@ $(SRC)
 
-testpackage: test$(PACKAGE).a
-
-test$(PACKAGE).a: test$(PACKAGE).$O
-	gopack grc $@ test$(PACKAGE).$O
-
-test$(PACKAGE).$O: _test $(SRC)
-	for i in $(SRC); do sed -e 's/package $(PACKAGE)/package test$(PACKAGE)/' < $$i > _test/$$i; done
-	$(GC) -o $@ _test/*.go
-
-_test:
-	mkdir _test
