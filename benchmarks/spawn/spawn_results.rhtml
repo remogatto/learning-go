@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th>Processes</th>
+    <% PROCESSES.each do |p| %>
+    <%= "<td>#{Math.log10(p)}</td>" %>
+    <% end %>
+  </tr>
+  <tr>
+    <th>Go</th>
+    <% RESULTS[:go].each do |r| %>
+    <%= "<td>#{r}</td>" %>
+    <% end %>
+  </tr>
+  <tr>
+    <th>Erlang</th>
+    <% RESULTS[:erlang].each do |r| %>
+    <%= "<td>#{r}</td>" %>
+    <% end %>
+  </tr>
+</table>
