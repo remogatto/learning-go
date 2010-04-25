@@ -25,17 +25,18 @@ p span.results-title {
     border-bottom: 1px #fff solid;
 }
 
-#results table {
+#benchmark table {
     margin-top: 10px;
     text-align: left;
     border: 1px #fff solid;
     border-collapse: collapse;
 }
-#results table th {
+
+#benchmark table th {
     background-color: #aaa;
 }
 
-#results table td, #results table th {
+#benchmark table td, #benchmark table th {
     border-bottom: 1px #fff solid;
     padding: 0.95em;
 }

@@ -25,7 +25,7 @@ window.onload = function () {
     });
   }
 
-  $("#results").load("spawn_results.html", function() {
+  $("#benchmark").load("benchmark.html", function() {
     cols = $("table th");
     labels = $("table th");
     numLines = cols.length - 1;
@@ -50,8 +50,10 @@ window.onload = function () {
     lines.axis[1].text.attr("stroke", "#fff");
 
     // Render axis labels
-    r.text((lines.axis[0].getBBox().x + lines.axis[0].getBBox().width)/2, lines.axis[0].getBBox().y + 40, "log10(Number of processes)").attr({ fill: "#fff", "font-size": 18 });
-    r.text(lines.axis[1].getBBox().x - 30, (lines.axis[1].getBBox().y + lines.axis[1].getBBox().height)/2, "microseconds").rotate(-90).attr({ fill: "#fff", "font-size": 18 });
+    var xLabel =  $($("th")[0]).text().match(/\((.*)\)/)[1];
+    var yLabel =  $($("th")[1]).text().match(/\((.*)\)/)[1];
+    r.text((lines.axis[0].getBBox().x + lines.axis[0].getBBox().width)/2, lines.axis[0].getBBox().y + 40, xLabel).attr({ fill: "#fff", "font-size": 18 });
+    r.text(lines.axis[1].getBBox().x - 30, (lines.axis[1].getBBox().y + lines.axis[1].getBBox().height)/2, yLabel).rotate(-90).attr({ fill: "#fff", "font-size": 18 });
 
     // Render labels
     for (var i = 0; i < numLines; i++) {

@@ -14,8 +14,8 @@ RESULTS = { :go => [], :erlang => [] }
 task :write_results => [:spawn_erlang, :spawn_go] do
   Dir.mkdir('output')
   Dir.glob('../res/*').each { |fn| cp(fn, File.join('output', File.basename(fn))) }
-  template = ERB.new(File.read('spawn_results.rhtml'))
-  File.open('output/spawn_results.html', 'w') { |f| f << template.result(binding) }
+  template = ERB.new(File.read('benchmark.rhtml'))
+  File.open('output/benchmark.html', 'w') { |f| f << template.result(binding) }
 end
 
 task :compile_spawn_erlang do
