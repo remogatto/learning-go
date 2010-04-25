@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <th>log10 (num_procs)</th>
+    <th>Go (µs)</th>    
+    <th>Erlang (µs)</th>
+  </tr>
+  <% PROCESSES.map { |processes| Math.log10(processes) }.zip(RESULTS[:go], RESULTS[:erlang]).each do |row| %>
+  <%= "<tr>" %>
+  <% row.each do |data| %>
+  <%= "<td>#{data}</td>" %>
+  <% end %>
+  <%= "</tr>" %>
+  <% end %>
+</table>
