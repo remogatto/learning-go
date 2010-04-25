@@ -1,20 +1,14 @@
 <table>
   <tr>
     <th>Processes</th>
-    <% PROCESSES.each do |p| %>
-    <%= "<td>#{Math.log10(p)}</td>" %>
-    <% end %>
-  </tr>
-  <tr>
-    <th>Go</th>
-    <% RESULTS[:go].each do |r| %>
-    <%= "<td>#{r}</td>" %>
-    <% end %>
-  </tr>
-  <tr>
+    <th>Go</th>    
     <th>Erlang</th>
-    <% RESULTS[:erlang].each do |r| %>
-    <%= "<td>#{r}</td>" %>
-    <% end %>
   </tr>
+  <% PROCESSES.map { |processes| Math.log10(processes) }.zip(RESULTS[:go], RESULTS[:erlang]).each do |row| %>
+  <%= "<tr>" %>
+  <% row.each do |data| %>
+  <%= "<td>#{data}</td>" %>
+  <% end %>
+  <%= "</tr>" %>
+  <% end %>
 </table>

@@ -4,4 +4,215 @@
  * Copyright (c) 2009 Dmitry Baranovskiy (http://g.raphaeljs.com)
  * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
  */
-Raphael.fn.g.linechart=function(J,I,a,c,s,r,C){function B(y,Y){var x=y.length/Y,V=0,i=x,X=0,W=[];while(V<y.length){i--;if(i<0){X+=y[V]*(1+i);W.push(X/x);X=y[V++]*-i;i+=x;}else{X+=y[V++];}}return W;}C=C||{};if(!this.raphael.is(s[0],"array")){s=[s];}if(!this.raphael.is(r[0],"array")){r=[r];}var O=Array.prototype.concat.apply([],s),M=Array.prototype.concat.apply([],r),o=this.g.snapEnds(Math.min.apply(Math,O),Math.max.apply(Math,O),s[0].length-1),v=o.from,h=o.to,l=C.gutter||10,P=(a-l*2)/(h-v),G=this.g.snapEnds(Math.min.apply(Math,M),Math.max.apply(Math,M),r[0].length-1),u=G.from,g=G.to,N=(c-l*2)/(g-u),t=Math.max(s[0].length,r[0].length),n=C.symbol||"",K=C.colors||Raphael.fn.g.colors,H=this,p=null,k=null,T=this.set(),L=[];for(var S=0,E=r.length;S<E;S++){t=Math.max(t,r[S].length);}var U=this.set();for(var S=0,E=r.length;S<E;S++){if(C.shade){U.push(this.path().attr({stroke:"none",fill:K[S],opacity:C.nostroke?1:0.3}));}if(r[S].length>a-2*l){r[S]=B(r[S],a-2*l);t=a-2*l;}if(s[S]&&s[S].length>a-2*l){s[S]=B(s[S],a-2*l);}}var w=this.set();if(C.axis){var f=(C.axis+"").split(/[,\s]+/);+f[0]&&w.push(this.g.axis(J+l,I+l,a-2*l,v,h,C.axisxstep||Math.floor((a-2*l)/20),2));+f[1]&&w.push(this.g.axis(J+a-l,I+c-l,c-2*l,u,g,C.axisystep||Math.floor((c-2*l)/20),3));+f[2]&&w.push(this.g.axis(J+l,I+c-l,a-2*l,v,h,C.axisxstep||Math.floor((a-2*l)/20),0));+f[3]&&w.push(this.g.axis(J+l,I+c-l,c-2*l,u,g,C.axisystep||Math.floor((c-2*l)/20),1));}var F=this.set(),Q=this.set(),m;for(var S=0,E=r.length;S<E;S++){if(!C.nostroke){F.push(m=this.path().attr({stroke:K[S],"stroke-width":C.width||2,"stroke-linejoin":"round","stroke-linecap":"round","stroke-dasharray":C.dash||""}));}var b=this.raphael.is(n,"array")?n[S]:n,z=this.set();L=[];for(var R=0,q=r[S].length;R<q;R++){var e=J+l+((s[S]||s[0])[R]-v)*P;var d=I+c-l-(r[S][R]-u)*N;(Raphael.is(b,"array")?b[R]:b)&&z.push(this.g[Raphael.fn.g.markers[this.raphael.is(b,"array")?b[R]:b]](e,d,(C.width||2)*3).attr({fill:K[S],stroke:"none"}));L=L.concat([R?"L":"M",e,d]);}Q.push(z);if(C.shade){U[S].attr({path:L.concat(["L",e,I+c-l,"L",J+l+((s[S]||s[0])[0]-v)*P,I+c-l,"z"]).join(",")});}!C.nostroke&&m.attr({path:L.join(",")});}function D(ae){var ab=[];for(var ac=0,ag=s.length;ac<ag;ac++){ab=ab.concat(s[ac]);}ab.sort();var ah=[],Y=[];for(var ac=0,ag=ab.length;ac<ag;ac++){ab[ac]!=ab[ac-1]&&ah.push(ab[ac])&&Y.push(J+l+(ab[ac]-v)*P);}ab=ah;ag=ab.length;var W=ae||H.set();for(var ac=0;ac<ag;ac++){var V=Y[ac]-(Y[ac]-(Y[ac-1]||J))/2,af=((Y[ac+1]||J+a)-Y[ac])/2+(Y[ac]-(Y[ac-1]||J))/2,x;ae?(x={}):W.push(x=H.rect(V-1,I,Math.max(af+1,1),c).attr({stroke:"none",fill:"#000",opacity:0}));x.values=[];x.symbols=H.set();x.y=[];x.x=Y[ac];x.axis=ab[ac];for(var aa=0,ad=r.length;aa<ad;aa++){ah=s[aa]||s[0];for(var Z=0,y=ah.length;Z<y;Z++){if(ah[Z]==ab[ac]){x.values.push(r[aa][Z]);x.y.push(I+c-l-(r[aa][Z]-u)*N);x.symbols.push(T.symbols[aa][Z]);}}}ae&&ae.call(x);}!ae&&(p=W);}function A(ac){var W=ac||H.set(),x;for(var aa=0,ae=r.length;aa<ae;aa++){for(var Z=0,ab=r[aa].length;Z<ab;Z++){var V=J+l+((s[aa]||s[0])[Z]-v)*P,ad=J+l+((s[aa]||s[0])[Z?Z-1:1]-v)*P,y=I+c-l-(r[aa][Z]-u)*N;ac?(x={}):W.push(x=H.circle(V,y,Math.abs(ad-V)/2).attr({stroke:"none",fill:"#000",opacity:0}));x.x=V;x.y=y;x.value=r[aa][Z];x.line=T.lines[aa];x.shade=T.shades[aa];x.symbol=T.symbols[aa][Z];x.symbols=T.symbols[aa];x.axis=(s[aa]||s[0])[Z];ac&&ac.call(x);}}!ac&&(k=W);}T.push(F,U,Q,w,p,k);T.lines=F;T.shades=U;T.symbols=Q;T.axis=w;T.hoverColumn=function(j,i){!p&&D();p.mouseover(j).mouseout(i);return this;};T.clickColumn=function(i){!p&&D();p.click(i);return this;};T.hrefColumn=function(W){var X=H.raphael.is(arguments[0],"array")?arguments[0]:arguments;if(!(arguments.length-1)&&typeof W=="object"){for(var j in W){for(var y=0,V=p.length;y<V;y++){if(p[y].axis==j){p[y].attr("href",W[j]);}}}}!p&&D();for(var y=0,V=X.length;y<V;y++){p[y]&&p[y].attr("href",X[y]);}return this;};T.hover=function(j,i){!k&&A();k.mouseover(j).mouseout(i);return this;};T.click=function(i){!k&&A();k.click(i);return this;};T.each=function(i){A(i);return this;};T.eachColumn=function(i){D(i);return this;};return T;};
+Raphael.fn.g.linechart = function (x, y, width, height, valuesx, valuesy, opts) {
+    function shrink(values, dim) {
+        var k = values.length / dim,
+            j = 0,
+            l = k,
+            sum = 0,
+            res = [];
+        while (j < values.length) {
+            l--;
+            if (l < 0) {
+                sum += values[j] * (1 + l);
+                res.push(sum / k);
+                sum = values[j++] * -l;
+                l += k;
+            } else {
+                sum += values[j++];
+            }
+        }
+        return res;
+    }
+    opts = opts || {};
+    if (!this.raphael.is(valuesx[0], "array")) {
+        valuesx = [valuesx];
+    }
+    if (!this.raphael.is(valuesy[0], "array")) {
+        valuesy = [valuesy];
+    }
+    var allx = Array.prototype.concat.apply([], valuesx),
+        ally = Array.prototype.concat.apply([], valuesy),
+        xdim = this.g.snapEnds(Math.min.apply(Math, allx), Math.max.apply(Math, allx), valuesx[0].length - 1),
+        minx = xdim.from,
+        maxx = xdim.to,
+        gutter = opts.gutter || 10,
+        kx = (width - gutter * 2) / (maxx - minx),
+        ydim = this.g.snapEnds(Math.min.apply(Math, ally), Math.max.apply(Math, ally), valuesy[0].length - 1),
+        miny = ydim.from,
+        maxy = ydim.to,
+        ky = (height - gutter * 2) / (maxy - miny),
+        len = Math.max(valuesx[0].length, valuesy[0].length),
+        symbol = opts.symbol || "",
+        colors = opts.colors || Raphael.fn.g.colors,
+        that = this,
+        columns = null,
+        dots = null,
+        chart = this.set(),
+        path = [];
+
+    for (var i = 0, ii = valuesy.length; i < ii; i++) {
+        len = Math.max(len, valuesy[i].length);
+    }
+    var shades = this.set();
+    for (var i = 0, ii = valuesy.length; i < ii; i++) {
+        if (opts.shade) {
+            shades.push(this.path().attr({stroke: "none", fill: colors[i], opacity: opts.nostroke ? 1 : .3}));
+        }
+        if (valuesy[i].length > width - 2 * gutter) {
+            valuesy[i] = shrink(valuesy[i], width - 2 * gutter);
+            len = width - 2 * gutter;
+        }
+        if (valuesx[i] && valuesx[i].length > width - 2 * gutter) {
+            valuesx[i] = shrink(valuesx[i], width - 2 * gutter);
+        }
+    }
+    var axis = this.set();
+    if (opts.axis) {
+        var ax = (opts.axis + "").split(/[,\s]+/);
+        +ax[0] && axis.push(this.g.axis(x + gutter, y + gutter, width - 2 * gutter, minx, maxx, opts.axisxstep || Math.floor((width - 2 * gutter) / 20), 2));
+        +ax[1] && axis.push(this.g.axis(x + width - gutter, y + height - gutter, height - 2 * gutter, miny, maxy, opts.axisystep || Math.floor((height - 2 * gutter) / 20), 3));
+        +ax[2] && axis.push(this.g.axis(x + gutter, y + height - gutter, width - 2 * gutter, minx, maxx, opts.axisxstep || Math.floor((width - 2 * gutter) / 20), 0));
+        +ax[3] && axis.push(this.g.axis(x + gutter, y + height - gutter, height - 2 * gutter, miny, maxy, opts.axisystep || Math.floor((height - 2 * gutter) / 20), 1));
+    }
+    var lines = this.set(),
+        symbols = this.set(),
+        line;
+    for (var i = 0, ii = valuesy.length; i < ii; i++) {
+        if (!opts.nostroke) {
+            lines.push(line = this.path().attr({
+                stroke: colors[i],
+                "stroke-width": opts.width || 2,
+                "stroke-linejoin": "round",
+                "stroke-linecap": "round",
+                "stroke-dasharray": opts.dash || ""
+            }));
+        }
+        var sym = this.raphael.is(symbol, "array") ? symbol[i] : symbol,
+            symset = this.set();
+        path = [];
+        for (var j = 0, jj = valuesy[i].length; j < jj; j++) {
+            var X = x + gutter + ((valuesx[i] || valuesx[0])[j] - minx) * kx;
+            var Y = y + height - gutter - (valuesy[i][j] - miny) * ky;
+            (Raphael.is(sym, "array") ? sym[j] : sym) && symset.push(this.g[Raphael.fn.g.markers[this.raphael.is(sym, "array") ? sym[j] : sym]](X, Y, (opts.width || 2) * 3).attr({fill: colors[i], stroke: "none"}));
+            path = path.concat([j ? "L" : "M", X, Y]);
+        }
+        symbols.push(symset);
+        if (opts.shade) {
+            shades[i].attr({path: path.concat(["L", X, y + height - gutter, "L",  x + gutter + ((valuesx[i] || valuesx[0])[0] - minx) * kx, y + height - gutter, "z"]).join(",")});
+        }
+        !opts.nostroke && line.attr({path: path.join(",")});
+    }
+    function createColumns(f) {
+        // unite Xs together
+        var Xs = [];
+        for (var i = 0, ii = valuesx.length; i < ii; i++) {
+            Xs = Xs.concat(valuesx[i]);
+        }
+        Xs.sort();
+        // remove duplicates
+        var Xs2 = [],
+            xs = [];
+        for (var i = 0, ii = Xs.length; i < ii; i++) {
+            Xs[i] != Xs[i - 1] && Xs2.push(Xs[i]) && xs.push(x + gutter + (Xs[i] - minx) * kx);
+        }
+        Xs = Xs2;
+        ii = Xs.length;
+        var cvrs = f || that.set();
+        for (var i = 0; i < ii; i++) {
+            var X = xs[i] - (xs[i] - (xs[i - 1] || x)) / 2,
+                w = ((xs[i + 1] || x + width) - xs[i]) / 2 + (xs[i] - (xs[i - 1] || x)) / 2,
+                C;
+            f ? (C = {}) : cvrs.push(C = that.rect(X - 1, y, Math.max(w + 1, 1), height).attr({stroke: "none", fill: "#000", opacity: 0}));
+            C.values = [];
+            C.symbols = that.set();
+            C.y = [];
+            C.x = xs[i];
+            C.axis = Xs[i];
+	    C.colId = i;
+            for (var j = 0, jj = valuesy.length; j < jj; j++) {
+                Xs2 = valuesx[j] || valuesx[0];
+                for (var k = 0, kk = Xs2.length; k < kk; k++) {
+                    if (Xs2[k] == Xs[i]) {
+                        C.values.push(valuesy[j][k]);
+                        C.y.push(y + height - gutter - (valuesy[j][k] - miny) * ky);
+                        C.symbols.push(chart.symbols[j][k]);
+                    }
+                }
+            }
+            f && f.call(C);
+        }
+        !f && (columns = cvrs);
+    }
+    function createDots(f) {
+        var cvrs = f || that.set(),
+            C;
+        for (var i = 0, ii = valuesy.length; i < ii; i++) {
+            for (var j = 0, jj = valuesy[i].length; j < jj; j++) {
+                var X = x + gutter + ((valuesx[i] || valuesx[0])[j] - minx) * kx,
+                    nearX = x + gutter + ((valuesx[i] || valuesx[0])[j ? j - 1 : 1] - minx) * kx,
+                    Y = y + height - gutter - (valuesy[i][j] - miny) * ky;
+                f ? (C = {}) : cvrs.push(C = that.circle(X, Y, Math.abs(nearX - X) / 2).attr({stroke: "none", fill: "#000", opacity: 0}));
+                C.x = X;
+                C.y = Y;
+                C.value = valuesy[i][j];
+                C.line = chart.lines[i];
+                C.shade = chart.shades[i];
+                C.symbol = chart.symbols[i][j];
+                C.symbols = chart.symbols[i];
+                C.axis = (valuesx[i] || valuesx[0])[j];
+                f && f.call(C);
+            }
+        }
+        !f && (dots = cvrs);
+    }
+    chart.push(lines, shades, symbols, axis, columns, dots);
+    chart.lines = lines;
+    chart.shades = shades;
+    chart.symbols = symbols;
+    chart.axis = axis;
+    chart.hoverColumn = function (fin, fout) {
+        !columns && createColumns();
+        columns.mouseover(fin).mouseout(fout);
+        return this;
+    };
+    chart.clickColumn = function (f) {
+        !columns && createColumns();
+        columns.click(f);
+        return this;
+    };
+    chart.hrefColumn = function (cols) {
+        var hrefs = that.raphael.is(arguments[0], "array") ? arguments[0] : arguments;
+        if (!(arguments.length - 1) && typeof cols == "object") {
+            for (var x in cols) {
+                for (var i = 0, ii = columns.length; i < ii; i++) if (columns[i].axis == x) {
+                    columns[i].attr("href", cols[x]);
+                }
+            }
+        }
+        !columns && createColumns();
+        for (var i = 0, ii = hrefs.length; i < ii; i++) {
+            columns[i] && columns[i].attr("href", hrefs[i]);
+        }
+        return this;
+    };
+    chart.hover = function (fin, fout) {
+        !dots && createDots();
+        dots.mouseover(fin).mouseout(fout);
+        return this;
+    };
+    chart.click = function (f) {
+        !dots && createDots();
+        dots.click(f);
+        return this;
+    };
+    chart.each = function (f) {
+        createDots(f);
+        return this;
+    };
+    chart.eachColumn = function (f) {
+        createColumns(f);
+        return this;
+    };
+    return chart;
+};

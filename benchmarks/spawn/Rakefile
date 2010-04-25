@@ -8,7 +8,7 @@ GO_EXT = GO_SYSTEM_INFO[ENV['GOARCH']]
 
 CLOBBER.include '*.beam', "*.dump", "#*", "*.#{GO_EXT}", "output", "spawn"
 
-PROCESSES = [10, 100, 1000, 10000]
+PROCESSES = [10, 100, 1000, 10000, 100000]
 RESULTS = { :go => [], :erlang => [] }
 
 task :write_results => [:spawn_erlang, :spawn_go] do
@@ -25,6 +25,7 @@ end
 desc "Run spawn_erlang"
 task :spawn_erlang => :compile_spawn_erlang do
   PROCESSES.each do |processes|
+    puts "Spawning #{processes} erlang processes"
     IO.popen("erl +P 500000 -noshell -pa #{Dir.pwd} -s spawn start #{processes} -s init stop") do |pipe|
       RESULTS[:erlang] << pipe.gets
     end
@@ -38,6 +39,7 @@ end
 desc "Run spawn_go"
 task :spawn_go => :compile_spawn_go do
   PROCESSES.each do |processes|
+    puts "Spawning #{processes} goroutines"
     IO.popen("./spawn #{processes}") do |pipe|
       RESULTS[:go] << pipe.gets
     end
@@ -45,7 +47,9 @@ task :spawn_go => :compile_spawn_go do
 end
 
 desc "Run benchmarks"
-task :spawn => [:clobber, :write_results]
+task :spawn => [:clobber, :write_results] do
+puts 'Wrote results in output/'
+end
 
 desc "Show system info"
 task :info do
