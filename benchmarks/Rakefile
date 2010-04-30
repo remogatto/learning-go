@@ -1,20 +1,20 @@
 require 'rake/clean'
 
-desc "Run all benchmark"
+BENCHMARKS = %w{ spawn spawn-multicore }
 
-task :clean_all => :clobber do
-  %w{ spawn spawn-multicore }.each do |dir|
-    chdir dir
-    sh "rake clobber"
-    chdir "../"
-  end
+def run(task = nil)
+  BENCHMARKS.each do |dir|
+    chdir(dir) { sh "rake #{task}" }
+  end  
 end
 
+desc 'Clean all intermediate files'
+task :clean_all => :clobber do
+  run(:clobber)
+end
+
+desc 'Run all benchmarks'
 task :default do
-  %w{ spawn spawn-multicore }.each do |dir|
-    chdir dir
-    sh "rake"
-    chdir "../"
-  end
+  run
 end
 
