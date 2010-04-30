@@ -1,0 +1,19 @@
+<p><span>Title: </span>Spawning processes</p>
+<p><span>Description: </span>Spawn a large amount of processes/goroutines.</p>
+<p><span class="results-title">Results</span></p>
+<table>
+  <tr>
+    <th>log10 (num_procs)</th>
+    <th>Go (µs)</th>    
+    <th>Go multicore (µs)</th>    
+    <th>Erlang (µs)</th>
+    <th>Erlang multicore (µs)</th>
+  </tr>
+  <% PROCESSES.map { |processes| Math.log10(processes) }.zip(RESULTS[:go], RESULTS[:go_mc], RESULTS[:erlang], RESULTS[:erlang_mc]).each do |row| %>
+  <%= "<tr>" %>
+  <% row.each do |data| %>
+  <%= "<td>#{data}</td>" %>
+  <% end %>
+  <%= "</tr>" %>
+  <% end %>
+</table>
