@@ -1,21 +1,13 @@
-require 'rake/clean'
-require 'erb'
+load File.expand_path(File.join(File.dirname(__FILE__), %w[.. tasks common.rake]))
 
-GO_SYSTEM_INFO = { 'amd' => '6', '386' => '8', 'arm' => '5' }
-GO_COMPILER = GO_SYSTEM_INFO[ENV['GOARCH']] + 'g'
-GO_LINKER = GO_SYSTEM_INFO[ENV['GOARCH']] + 'l'
-GO_EXT = GO_SYSTEM_INFO[ENV['GOARCH']]
-
-CLOBBER.include '*.beam', "*.dump", "#*", "*.#{GO_EXT}", "output", "spawn"
+CLOBBER.include "spawn"
 
 PROCESSES = [10, 100, 1000, 10000, 100000]
 RESULTS = { :go => [], :go_mc => [], :erlang => [], :erlang_mc => [] }
 
 task :write_results => [:spawn_erlang, :spawn_erlang_mc, :spawn_go, :spawn_go_mc] do
-  Dir.mkdir('output')
-  Dir.glob('../res/*').each { |fn| cp(fn, File.join('output', File.basename(fn))) }
-  template = ERB.new(File.read('spawn_results.rhtml'))
-  File.open('output/spawn_results.html', 'w') { |f| f << template.result(binding) }
+  template = ERB.new(File.read('benchmark.rhtml'))
+  File.open('benchmark.html', 'w') { |f| f << template.result(binding) }
 end
 
 task :compile_spawn_erlang do
@@ -68,7 +60,7 @@ end
 
 desc "Run benchmarks"
 task :spawn => [:clobber, :write_results] do
-puts 'Wrote results in output/'
+puts 'Wrote results in benchmark.html'
 end
 
 desc "Show system info"

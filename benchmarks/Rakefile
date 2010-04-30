@@ -1,0 +1,20 @@
+require 'rake/clean'
+
+desc "Run all benchmark"
+
+task :clean_all => :clobber do
+  %w{ spawn spawn-multicore }.each do |dir|
+    chdir dir
+    sh "rake clobber"
+    chdir "../"
+  end
+end
+
+task :default do
+  %w{ spawn spawn-multicore }.each do |dir|
+    chdir dir
+    sh "rake"
+    chdir "../"
+  end
+end
+
