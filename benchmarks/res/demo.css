@@ -41,3 +41,12 @@ p span.results-title {
     padding: 0.85em;
 }
 
+#header {
+    margin-right: 10px;
+    text-align: right
+}
+
+#header select {
+    background-color: #000;
+    color: #fff
+}
