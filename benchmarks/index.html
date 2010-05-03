@@ -14,13 +14,20 @@
         <script src="res/graph.js" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>
-      <div id="header">
-	<select id="benchmark-list">
-	  <option value="spawn">Spawn processes</option>
-	  <option value="spawn-multicore">Spawn processes (multicore)</option>
-	</select>
+      <div id="wrap">
+	<div id="header">
+	  <select id="benchmark-list">
+	    <option value="spawn">Spawn processes</option>
+	    <option value="spawn-multicore">Spawn processes (multicore)</option>
+	  </select>
+	</div>
+	<div id="graph">
+	  <div id="holder"></div>
+	</div>
+	<div id="benchmark"></div>
+	<div id="footer">
+	  <p>Generated with RaphaelJS</p>
+	</div>
       </div>
-      <div id="holder"></div>
-      <div id="benchmark"></div>
     </body>
 </html>

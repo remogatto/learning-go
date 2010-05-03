@@ -1,28 +1,30 @@
 body {
-    background: #000;
-    font: 100.01% "Fontin Sans", Fontin-Sans, "Myriad Pro", "Lucida Grande", "Lucida Sans Unicode", Lucida, Verdana, Helvetica, sans-serif;
-    color: #fff;
-    margin: 10px 0 0 0;
-    padding: 0;
+    background-color: #000;
+    color: #fff
 }
 
-#holder {
-    margin: 0 20px 0 20px;
-    border-right: 1px #fff solid;
-    float: left;
-    width: 50%;
+#header
+{
+	height: 50px;
+	/* background-color: #666; */
+	margin-bottom: 10px;
 }
 
-div#info {
-
+#graph
+{
+	float: left;
+	width: 25%;
+	/* background-color: #999; */
+	margin-bottom: 10px;
 }
 
-p span {
-    font-weight: bold;
-}
-
-p span.results-title {
-    border-bottom: 1px #fff solid;
+#benchmark
+{
+	float: left;
+	margin-left: 5%;
+	width: 65%;
+	/* background-color: #999; */
+	margin-bottom: 10px;
 }
 
 #benchmark table {
@@ -41,12 +43,18 @@ p span.results-title {
     padding: 0.85em;
 }
 
-#header {
-    margin-right: 10px;
-    text-align: right
+#footer
+{
+	clear: both;
+	height: 50px;
+	/* background-color: #666; */
+	margin-bottom: 10px;
 }
 
-#header select {
-    background-color: #000;
-    color: #fff
+p span {
+    font-weight: bold;
+}
+
+p span.results-title {
+    border-bottom: 1px #fff solid;
 }
