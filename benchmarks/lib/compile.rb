@@ -21,6 +21,21 @@ def go_run(prog, args = [], gomaxprocs = "")
 end
 
 def write_results
+
+  Dir.glob('*.go').each do |fn|
+    lang = :go
+    source = File.read(fn)
+    template = ERB.new(File.read('source.rhtml'))
+    File.open("#{File.basename(fn, '.go')}_go.html", 'w') { |f| f << template.result(binding)} 
+  end
+
+  Dir.glob('*.erl').each do |fn|
+    lang = :erlang
+    source = File.read(fn)
+    template = ERB.new(File.read('source.rhtml'))
+    File.open("#{File.basename(fn, '.erl')}_erlang.html", 'w') { |f| f << template.result(binding)} 
+  end
+
   puts 'Wrote results in benchmark.html'
   template = ERB.new(File.read('benchmark.rhtml'))
   File.open('benchmark.html', 'w') { |f| f << template.result(binding) }

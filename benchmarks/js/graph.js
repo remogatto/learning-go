@@ -32,7 +32,7 @@ window.onload = function () {
     var xValues = [], yValues = [], labels = [];
     var cols, numLines;
 
-    $("#holder").height(window.innerHeight - 40);
+    $("#holder").height(window.innerHeight - 50);
     var r = Raphael("holder");
     r.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
 
@@ -71,6 +71,11 @@ window.onload = function () {
 	r.g.disc(70, 100 + i * 15, 5).attr({fill: lines.lines[i].attrs.stroke, stroke: "none"});
 	r.text(100, 100 + i * 15, $(labels[i + 1]).text()).attr(r.g.txtattr).attr({fill: lines.lines[i].attrs.stroke, "text-anchor": "start"});
       }
+
+      // Apply ceebox to a.ceebox links
+      $(function () {
+	$('a.ceebox').ceebox();
+      });
 
     });
   }

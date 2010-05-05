@@ -1,11 +1,10 @@
-<p><span>Title: </span>Spawning processes</p>
-<p><span>Description: </span>Spawn a large amount of processes/goroutines.</p>
-<p><span class="results-title">Results</span></p>
+<p class="description">The benchmark spawns a large amount of processes/goroutines and calculates time/process.</p>
+<h1>Results</h1>
 <table>
   <tr>
-    <th>log10 (num_procs)</th>
-    <th>Go (µs)</th>    
-    <th>Erlang (µs)</th>
+    <th>N (log10(num_procs))</th>
+    <th>Go (µs/process)</th>    
+    <th>Erlang (µs/process)</th>
   </tr>
   <% PROCESSES.map { |processes| Math.log10(processes) }.zip(RESULTS[:go], RESULTS[:erlang]).each do |row| %>
   <%= "<tr>" %>
@@ -15,3 +14,14 @@
   <%= "</tr>" %>
   <% end %>
 </table>
+
+<div id="info">
+
+  <% go_link_path = File.join(File.basename(Dir.pwd), Dir.glob("*_go.html").first) %>
+  <% erlang_link_path = File.join(File.basename(Dir.pwd), Dir.glob("*_erlang.html").first) %>
+
+  <a class="ceebox" href="<%= go_link_path %>" rel="iframe">Go source</a>
+  <a class="ceebox" href="<%= erlang_link_path %>" rel="iframe">Erlang source</a>
+  <a class="ceebox" href="<%= erlang_link_path %>" rel="iframe">System info</a>
+</div>
+

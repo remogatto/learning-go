@@ -1,13 +1,12 @@
-<p><span>Title: </span>Spawning processes</p>
-<p><span>Description: </span>Spawn a large amount of processes/goroutines.</p>
-<p><span class="results-title">Results</span></p>
+<p class="description">The benchmark spawns a large amount of processes/goroutines and calculates time/process. It runs both Go and Erlang using multicore CPUs.</p>
+<h1>Results</h1>
 <table>
   <tr>
-    <th>log10 (num_procs)</th>
-    <th>Go (µs)</th>    
-    <th>Go multicore (µs)</th>    
-    <th>Erlang (µs)</th>
-    <th>Erlang multicore (µs)</th>
+    <th>N (log10(num_procs))</th>
+    <th>Go (µs/process)</th>    
+    <th>Go multicore (µs/process)</th>    
+    <th>Erlang (µs/process)</th>
+    <th>Erlang multicore (µs/process)</th>
   </tr>
   <% PROCESSES.map { |processes| Math.log10(processes) }.zip(RESULTS[:go], RESULTS[:go_mc], RESULTS[:erlang], RESULTS[:erlang_mc]).each do |row| %>
   <%= "<tr>" %>
@@ -17,3 +16,14 @@
   <%= "</tr>" %>
   <% end %>
 </table>
+
+<div id="info">
+
+  <% go_link_path = File.join(File.basename(Dir.pwd), Dir.glob("*_go.html").first) %>
+  <% erlang_link_path = File.join(File.basename(Dir.pwd), Dir.glob("*_erlang.html").first) %>
+
+  <a class="ceebox" href="<%= go_link_path %>" rel="iframe">Go source</a>
+  <a class="ceebox" href="<%= erlang_link_path %>" rel="iframe">Erlang source</a>
+  <a class="ceebox" href="<%= erlang_link_path %>" rel="iframe">System info</a>
+</div>
+
