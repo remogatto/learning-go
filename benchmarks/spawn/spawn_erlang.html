@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <link rel="stylesheet" href="../css/shCore.css" type="text/css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="../css/shThemeDefault.css" type="text/css" media="screen" charset="utf-8">
+
+        <script src="../js/shCore.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../js/shBrushErlang.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../js/shBrushGo.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+	  SyntaxHighlighter.all()
+	</script>
+
+    </head>
+    <body>
+
+      <pre class="brush: erlang">
+-module(spawn).
+-export([start/1]).
+
+start([A]) ->
+    N = list_to_integer(atom_to_list(A)),
+    statistics(wall_clock),	
+    L = for(1, N, fun() -> spawn(fun() -> wait() end) end),
+    {_, WallClock} = statistics(wall_clock),
+    lists:foreach(fun(Pid) -> Pid ! die end, L),
+    io:format("~p", [WallClock * 1000 / N]).
+wait() ->
+    receive
+        die -> void
+    end.
+
+for(N, N, F) -> [F()];
+for(I, N, F) -> [F()|for(I + 1, N, F)].
+
+      </pre>
+    </body>
+</html>
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <link rel="stylesheet" href="../css/shCore.css" type="text/css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="../css/shThemeDefault.css" type="text/css" media="screen" charset="utf-8">
+
+        <script src="../js/shCore.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../js/shBrushErlang.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../js/shBrushGo.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+	  SyntaxHighlighter.all()
+	</script>
+
+    </head>
+    <body>
+
+      <pre class="brush: go">
+package main
+
+import (
+	"fmt"
+	"time"
+	"flag"
+	"strconv"
+)
+
+func main() {
+	flag.Parse()
+	num_processes, _ := strconv.Atoi(flag.Arg(0))
+
+	done := make(chan bool)
+
+	start := time.Nanoseconds()
+
+	for i := 0; i < num_processes; i++ {
+		go func() {
+			done <- true
+		}()
+	}
+
+	end := time.Nanoseconds()
+
+	total_spawn_time_us := float((end - start) / 10E3)
+	process_spawn_time := total_spawn_time_us / float(num_processes)
+
+	fmt.Print(process_spawn_time)
+
+	for i := 0; i < num_processes; i++ { <-done }
+}
+
+      </pre>
+    </body>
+</html>
+

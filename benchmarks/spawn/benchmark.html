@@ -1,11 +1,10 @@
-<p><span>Title: </span>Spawning processes</p>
-<p><span>Description: </span>Spawn a large amount of processes/goroutines.</p>
-<p><span class="results-title">Results</span></p>
+<p class="description">The benchmark spawns a large amount of processes/goroutines and calculates time/process.</p>
+<h1>Results</h1>
 <table>
   <tr>
-    <th>log10 (num_procs)</th>
-    <th>Go (µs)</th>    
-    <th>Erlang (µs)</th>
+    <th>N (log10(num_procs))</th>
+    <th>Go (µs/process)</th>    
+    <th>Erlang (µs/process)</th>
   </tr>
   
   <tr>
@@ -22,9 +21,9 @@
   
   <td>2.0</td>
   
-  <td>1.67</td>
+  <td>1.79</td>
   
-  <td>10.0</td>
+  <td>0.0</td>
   
   </tr>
   
@@ -32,7 +31,7 @@
   
   <td>3.0</td>
   
-  <td>1.079</td>
+  <td>1.184</td>
   
   <td>4.0</td>
   
@@ -42,9 +41,9 @@
   
   <td>4.0</td>
   
-  <td>0.8049</td>
+  <td>0.9628</td>
   
-  <td>5.1</td>
+  <td>4.8</td>
   
   </tr>
   
@@ -52,10 +51,22 @@
   
   <td>5.0</td>
   
-  <td>0.69255</td>
+  <td>0.72559</td>
   
-  <td>5.45</td>
+  <td>5.34</td>
   
   </tr>
   
 </table>
+
+<div id="info">
+
+  
+  
+
+  <a class="ceebox" href="spawn/spawn_go.html" rel="iframe">Go source</a>
+  <a class="ceebox" href="spawn/spawn_erlang.html" rel="iframe">Erlang source</a>
+  <a class="ceebox" href="spawn/spawn_erlang.html" rel="iframe">System info</a>
+</div>
+
+
