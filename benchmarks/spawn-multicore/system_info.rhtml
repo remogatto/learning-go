@@ -8,8 +8,7 @@
         <link rel="stylesheet" href="../css/shThemeEmacs.css" type="text/css" media="screen" charset="utf-8">
 
         <script src="../js/shCore.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../js/shBrushErlang.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../js/shBrushGo.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../js/shBrushPlain.js" type="text/javascript" charset="utf-8"></script>
 
 	<script type="text/javascript">
 	  SyntaxHighlighter.all()
@@ -24,10 +23,40 @@
 
     </head>
     <body>
-      <h1><%= fn %></h1>
-      <pre class="brush: <%= lang %>">
-<%= source %>
+    <h1>CPU(s)</h1>
+      <pre class="brush: plain">
+<%= get_cpu.join("\n") %>
       </pre>
+
+    <h1>Memory</h1>
+      <pre class="brush: plain">
+<%= get_ram %>
+      </pre>
+
+    <h1>Kernel</h1>
+      <pre class="brush: plain">
+<%= get_kernel %>
+      </pre>
+
+    <h1>Go version</h1>
+      <pre class="brush: plain">
+<%= go_version %>
+      </pre>
+
+    <h1>Erlang version</h1>
+      <pre class="brush: plain">
+<%= erlang_version %>
+      </pre>
+
+    <h1>Go command line</h1>
+      <pre class="brush: plain">
+<%= @go_cmd.join("\n") %>
+      </pre>
+
+    <h1>Erlang command line</h1>
+      <pre class="brush: plain">
+<%= @erl_cmd.join("\n") %>
+      </pre>
+
     </body>
 </html>
-
