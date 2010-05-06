@@ -21,9 +21,10 @@
 
   <% go_link_path = File.join(File.basename(Dir.pwd), Dir.glob("*_go.html").first) %>
   <% erlang_link_path = File.join(File.basename(Dir.pwd), Dir.glob("*_erlang.html").first) %>
+  <% system_info_link_path = File.join(File.basename(Dir.pwd), "system_info.html") %>
 
   <a class="ceebox" href="<%= go_link_path %>" rel="iframe">Go source</a>
   <a class="ceebox" href="<%= erlang_link_path %>" rel="iframe">Erlang source</a>
-  <a class="ceebox" href="<%= erlang_link_path %>" rel="iframe">System info</a>
+  <a class="ceebox" href="<%= system_info_link_path %>" rel="iframe">System info</a>
 </div>
 
