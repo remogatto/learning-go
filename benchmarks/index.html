@@ -27,13 +27,14 @@
 
         <script src="js/graph.js" type="text/javascript" charset="utf-8"></script>
     </head>
-    <body>
 
+    <body>
       <div id="header">
-	<a id="forkme" href="http://github.com/remogatto/go-benchmarks">
-	  <img src="images/forkme.png" alt="Fork me on Github!"/>	    
-	</a>
-	<div id="benchmark-list">
+	<a href="http://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub" /></a>
+	<div id="title">
+	  <h1>GO benchmarks<span>(A bunch of non-official GO benchmarks and comparaisons)</span>
+	</div>
+	<div id="choose-benchmark">
 	  <select>
 	    <option value="spawn">Spawn processes</option>
 	    <option value="spawn-multicore">Spawn processes (multicore)</option>
@@ -44,7 +45,9 @@
 	<div id="graph">
 	  <div id="holder"></div>
 	</div>
-	<div id="benchmark"></div>
+	<div id="benchmark">
+	  <div id="results"></div>
+	</div>
 	<!-- <div id="footer"> -->
         <!--   <p>graph generated with <a href="http://raphaeljs.com">raphaeljs</a></p> -->
 	<!-- </div> -->
