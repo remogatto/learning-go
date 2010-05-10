@@ -4,14 +4,14 @@ body {
 }
 
 #wrap {
-    margin-top: 80px;
+    padding-top: 100px;
 }
 
 #header h1
 {
     position: absolute;
-    left: 130px;
-    top: 10px;
+    left: 120px;
+    top: 20px;
 
 }
 
@@ -74,10 +74,12 @@ body {
 #footer
 {
     clear: both;
-    /* padding-top: 30px; */
-    /* text-align: center; */
-    /* font-size: 0.8em; */
-    /* color: #ccc; */
+    padding-top: 20px;
+    margin: 0px;
+    text-align: center;
+    font-size: 0.8em;
+    color: #ccc;
+    border-top: 1px solid #fff;
 }
 
 #footer a, #footer a:visited {
