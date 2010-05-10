@@ -22,19 +22,12 @@ a#forkme img {
     border: 0px solid #000;
 }
 
-/* #benchmark-list { */
-/*     /\* text-align: right; *\/ */
-/*     width: 79%; */
-/*     height: 50px; */
-/*     float: right; */
-/*     border: 1px solid #fff; */
-/* } */
-
-/* .combobox_input { */
-/*   background-color: #000; */
-/*   color: #fff; */
-/*   border: 1px solid #fff; */
-/* } */
+#benchmark-list {
+    /* text-align: right; */
+    width: 79%;
+    float: right;
+    border: 1px solid #fff;
+}
 
 #graph
 {
@@ -58,6 +51,7 @@ a#forkme img {
     width: 100%;
     margin-top: 10px;
     text-align: left;
+    font-size: 0.75em;
     border: 1px #fff solid;
     border-collapse: collapse;
 }
