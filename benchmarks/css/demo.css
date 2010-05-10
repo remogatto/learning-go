@@ -3,25 +3,55 @@ body {
     color: #fff
 }
 
+#wrap {
+    position: relative;
+    top: -85px;
+}
+
 #header
 {
-    text-align: right
 }
+
+#header a#forkme {
+    width: 20%;
+    float: left;
+    /* background-color: #aaa; */
+}
+
+a#forkme img {
+    border: 0px solid #000;
+}
+
+/* #benchmark-list { */
+/*     /\* text-align: right; *\/ */
+/*     width: 79%; */
+/*     height: 50px; */
+/*     float: right; */
+/*     border: 1px solid #fff; */
+/* } */
+
+/* .combobox_input { */
+/*   background-color: #000; */
+/*   color: #fff; */
+/*   border: 1px solid #fff; */
+/* } */
 
 #graph
 {
-	float: left;
-	margin-left: 1%;
-	width: 44%;
-	border-right: 1px solid #fff;
+    clear: both;
+    float: left;
+    margin-left: 2%;
+    width: 41%;
 }
 
 #benchmark
 {
 	float: left;
 	margin-left: 1%;
+	padding-left: 1%;
 	width: 53%;
 	margin-bottom: 10px;
+	border-left: 1px solid #fff;
 }
 
 #benchmark table {
@@ -38,14 +68,20 @@ body {
 
 #benchmark table td, #benchmark table th {
     border-bottom: 1px #fff solid;
-    padding: 0.85em;
+    padding: 0.5em;
 }
 
 #footer
 {
-	clear: both;
-	height: 50px;
-	margin-bottom: 10px;
+    clear: both;
+    /* padding-top: 30px; */
+    /* text-align: center; */
+    /* font-size: 0.8em; */
+    /* color: #ccc; */
+}
+
+#footer a, #footer a:visited {
+    color: #ccc;
 }
 
 #benchmark p {
@@ -64,7 +100,8 @@ p span {
     margin-bottom: 20px;
 }
 
-#header select {
+
+#benchmark-list select {
     margin: 10px;
     color: #fff;
     background-color: #000;
