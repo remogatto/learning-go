@@ -1,12 +1,10 @@
-window.onload = function () {
+$(document).ready(function () {
 
-  $("#benchmark-list option").each(function() {
-    $(this).click(function() {
+  $("#choose-benchmark select").combobox({ callbackSelectOption: function(val) {
       $('#holder').empty();
-      $('#benchmark').empty();
-      loadBenchmark($(this).val() + "/benchmark.html");
-    });
-  });
+      $('#results').empty();
+      loadBenchmark(val + "/benchmark.html");
+  }});
 
   // Grab xvalues, yvalues
   function grabValues(xValues, yValues, numLines) {
@@ -32,11 +30,11 @@ window.onload = function () {
     var xValues = [], yValues = [], labels = [];
     var cols, numLines;
 
-    $("#holder").height(window.innerHeight - 50);
+    // $("#holder").height(window.innerHeight - 155);
     var r = Raphael("holder");
     r.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
 
-    $("#benchmark").load(name, function() {
+    $("#results").load(name, function(response, success, request) {
       cols = $("table th");
       labels = $("table th");
       numLines = cols.length - 1;
@@ -82,4 +80,4 @@ window.onload = function () {
 
   loadBenchmark("spawn/benchmark.html");
 
-};
+});

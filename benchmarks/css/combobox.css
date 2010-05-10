@@ -1,0 +1,92 @@
+body, html { width: 100%; height: 100%; }
+body { padding: 0; margin: 0; }
+
+div#combobox_overlay { 
+/*	required	*/	
+	position: fixed;
+	z-index: 99;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	
+/*	layout	*/
+}
+div.combobox_container {
+/*	required	*/
+	position: absolute;
+
+	/* left: 20px; */
+	/* top: 20px; */
+/*	layout	*/
+	
+}
+input.combobox_input {
+/*	layout	*/	
+	width: 200px;
+	height: 20px;
+	padding: 0 0 0 4px;
+	border: 1px solid #fff;
+	position: absolute;
+
+	background-color: #000;
+	color: #fff;
+	font-size: 0.85em;
+}
+a.combobox_button {
+/*	layout	*/
+	display: block;
+	height: 20px;
+	position: absolute;
+	margin: 0 0 0 206px;
+	padding: 0 5px;
+	border: 1px solid #fff;
+	border-left: 0;
+	text-decoration: none;
+	color: #a00;
+}
+ul.combobox_summary {
+/*	required	*/	
+	overflow-x: hidden;
+	overflow-y: auto;
+
+/*	layout	*/
+	width: 184px;
+
+	/* CSS 3 */
+	background-color: rgba(20, 20, 20, 0.7);
+
+	border: 1px solid #fff;
+	border-top: 0;
+	margin: 22px 0 0 0;
+	padding: 10px;
+	list-style: none;
+	display: block;
+}
+ul.combobox_summary li {
+/*	layout	*/	
+	width: 144px;
+	height: 24px;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+ul.combobox_summary li a {
+/*	layout	*/	
+	width: 195px;
+	height: 22px;
+	margin: 0;
+	display: block;
+	text-decoration: none;
+	color: #fff;
+	font-size: 0.7em;
+}
+ul.combobox_summary li a:hover {
+	background-color: #00a;
+	text-decoration: none;
+}
+/*	required when using several comboboxes below each other	*/
+#combobox_container_foo1 { z-index: 103; }
+#combobox_container_foo2 { z-index: 102; }
+#combobox_container_foo3 { z-index: 101; }

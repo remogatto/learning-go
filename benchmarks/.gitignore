@@ -1,3 +1,7 @@
 *.beam
 *.8
+*.html
+spawn/spawn
+spawn-multicore/spawn
+*#
 
