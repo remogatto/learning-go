@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <link rel="stylesheet" href="../css/shCore.css" type="text/css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="../css/shThemeEmacs.css" type="text/css" media="screen" charset="utf-8">
+
+        <script src="../js/shCore.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../js/shBrushPlain.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+	  SyntaxHighlighter.all()
+	</script>
+
+	<style type="text/css" media="screen">
+	  body {
+	    background-color: #000;
+	    color: #fff;
+          }
+	</style>
+
+    </head>
+    <body>
+    <h1>CPU(s)</h1>
+      <pre class="brush: plain">
+CPU INFO: Intel(R) Core(TM)2 CPU         T7400  @ 2.16GHz 2167.000MHz 4322.40 Bogomips 
+CPU INFO: Intel(R) Core(TM)2 CPU         T7400  @ 2.16GHz 1000.000MHz 4324.75 Bogomips 
+      </pre>
+
+    <h1>Memory</h1>
+      <pre class="brush: plain">
+Memory: 544/1982MB(28%)
+      </pre>
+
+    <h1>Kernel</h1>
+      <pre class="brush: plain">
+OS/Kernel: Linux 2.6.31-21-generic
+      </pre>
+
+    <h1>Go version</h1>
+      <pre class="brush: plain">
+8g version 5289+
+
+      </pre>
+
+    <h1>Erlang version</h1>
+      <pre class="brush: plain">
+Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 5.7.4
+
+      </pre>
+
+    <h1>Go command line</h1>
+      <pre class="brush: plain">
+sh -c " ./spawn 10"
+sh -c " ./spawn 100"
+sh -c " ./spawn 1000"
+sh -c " ./spawn 10000"
+sh -c " ./spawn 100000"
+      </pre>
+
+    <h1>Erlang command line</h1>
+      <pre class="brush: plain">
+erl -noshell -pa /home/andrea/src/learning-go/benchmarks/spawn -s spawn start 10 -s init stop +P 500000
+erl -noshell -pa /home/andrea/src/learning-go/benchmarks/spawn -s spawn start 100 -s init stop +P 500000
+erl -noshell -pa /home/andrea/src/learning-go/benchmarks/spawn -s spawn start 1000 -s init stop +P 500000
+erl -noshell -pa /home/andrea/src/learning-go/benchmarks/spawn -s spawn start 10000 -s init stop +P 500000
+erl -noshell -pa /home/andrea/src/learning-go/benchmarks/spawn -s spawn start 100000 -s init stop +P 500000
+      </pre>
+
+    </body>
+</html>
